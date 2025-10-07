@@ -47,6 +47,18 @@ export default function BoardPage() {
     }
   }
 
+  // Function to update a specific card in the lists state
+  const updateCardInList = (cardId: number, updatedCard: any) => {
+    setLists(prevLists =>
+      prevLists.map(list => ({
+        ...list,
+        cards: list.cards.map(card =>
+          card.id === cardId ? { ...card, ...updatedCard } : card
+        )
+      }))
+    )
+  }
+
   if (authLoading || loading || !user) {
     return (
       <div className="flex h-screen items-center justify-center">
@@ -100,7 +112,14 @@ export default function BoardPage() {
       >
         <div className="flex h-full gap-4 p-4">
           {lists.map((list) => (
-            <BoardList key={list.id} list={list} cards={list.cards} onUpdate={loadBoard} />
+            <BoardList
+              key={list.id}
+              list={list}
+              cards={list.cards}
+              onUpdate={loadBoard}
+              boardId={boardId}
+              onUpdateCard={updateCardInList}
+            />
           ))}
           <AddListButton boardId={boardId} listCount={lists.length} onUpdate={loadBoard} />
         </div>

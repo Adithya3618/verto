@@ -20,9 +20,11 @@ interface CardDetailDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   onUpdate?: () => void
+  boardId?: number
+  onUpdateCard?: (cardId: number, updatedCard: any) => void
 }
 
-export function CardDetailDialog({ cardId, open, onOpenChange, onUpdate }: CardDetailDialogProps) {
+export function CardDetailDialog({ cardId, open, onOpenChange, onUpdate, boardId, onUpdateCard }: CardDetailDialogProps) {
   const router = useRouter()
   const { user } = useAuth()
   const [card, setCard] = useState<CardWithDetails | null>(null)
@@ -64,7 +66,18 @@ export function CardDetailDialog({ cardId, open, onOpenChange, onUpdate }: CardD
         description: editedDescription || null,
         due_date: dueDate || null,
       })
-      await loadCard()
+
+      // Optimistically update the parent state immediately
+      onUpdateCard?.(card.id, {
+        title: editedTitle,
+        description: editedDescription || null,
+        due_date: dueDate || null,
+      })
+
+      // Close the dialog after successful save
+      onOpenChange(false)
+
+      // Also call the general update callback as backup
       onUpdate?.()
     } catch (error) {
       console.error("Failed to update card:", error)
@@ -118,6 +131,7 @@ export function CardDetailDialog({ cardId, open, onOpenChange, onUpdate }: CardD
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogTitle className="sr-only">Loading card details...</DialogTitle>
           <div className="flex items-center justify-center py-12">
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
           </div>
@@ -202,7 +216,7 @@ export function CardDetailDialog({ cardId, open, onOpenChange, onUpdate }: CardD
               )}
               <AssignMemberDialog
                 cardId={card.id}
-                boardId={card.list.board_id}
+                boardId={boardId || 0}
                 currentAssignees={card.assignees}
                 onUpdate={loadCard}
               />

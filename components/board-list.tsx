@@ -14,9 +14,11 @@ interface BoardListProps {
   list: List
   cards: CardType[]
   onUpdate: () => void
+  boardId?: number
+  onUpdateCard?: (cardId: number, updatedCard: any) => void
 }
 
-export function BoardList({ list, cards, onUpdate }: BoardListProps) {
+export function BoardList({ list, cards, onUpdate, boardId, onUpdateCard }: BoardListProps) {
   const [isAddingCard, setIsAddingCard] = useState(false)
   const [newCardTitle, setNewCardTitle] = useState("")
   const [isEditingTitle, setIsEditingTitle] = useState(false)
@@ -122,7 +124,12 @@ export function BoardList({ list, cards, onUpdate }: BoardListProps) {
         {/* Cards */}
         <div className="flex-1 overflow-y-auto p-2 space-y-2">
           {cards.map((card) => (
-            <BoardCardItem key={card.id} card={card} />
+            <BoardCardItem
+              key={card.id}
+              card={card}
+              boardId={list.board_id}
+              onUpdateCard={onUpdateCard}
+            />
           ))}
 
           {/* Add Card Form */}

@@ -9,9 +9,11 @@ import type { Card as CardType } from "@/lib/types"
 interface BoardCardItemProps {
   card: CardType
   onUpdate?: () => void
+  boardId?: number
+  onUpdateCard?: (cardId: number, updatedCard: any) => void
 }
 
-export function BoardCardItem({ card, onUpdate }: BoardCardItemProps) {
+export function BoardCardItem({ card, onUpdate, boardId, onUpdateCard }: BoardCardItemProps) {
   const [showDialog, setShowDialog] = useState(false)
   const hasDueDate = !!card.due_date
   const dueDate = card.due_date ? new Date(card.due_date) : null
@@ -41,7 +43,14 @@ export function BoardCardItem({ card, onUpdate }: BoardCardItemProps) {
         </div>
       </Card>
 
-      <CardDetailDialog cardId={card.id} open={showDialog} onOpenChange={setShowDialog} onUpdate={onUpdate} />
+      <CardDetailDialog
+        cardId={card.id}
+        open={showDialog}
+        onOpenChange={setShowDialog}
+        onUpdate={onUpdate}
+        boardId={boardId}
+        onUpdateCard={onUpdateCard}
+      />
     </>
   )
 }
