@@ -13,7 +13,6 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 7 days
 # CORS configuration
 ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://localhost:7500",
     "http://localhost:3001",
     "http://127.0.0.1:3000",
 ]
