@@ -12,7 +12,7 @@ class UserCreate(BaseModel):
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
-
+ 
 class BoardCreate(BaseModel):
     title: str
     description: Optional[str] = None
