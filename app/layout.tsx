@@ -8,7 +8,7 @@ import "./globals.css"
 import { Suspense } from "react"
 
 export const metadata: Metadata = {
-  title: "Trello Clone - Project Management",
+  title: "Vertoh - Project Management",
   description: "A modern kanban board application for team collaboration",
   generator: "v0.app",
 }

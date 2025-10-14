@@ -10,7 +10,7 @@ export default function LandingPage() {
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-2">
             <Layers className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold">Trello Clone</span>
+            <span className="text-xl font-bold">Vertoh</span>
           </div>
           <div className="flex items-center gap-4">
             <Link href="/login">
@@ -102,7 +102,7 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-border/40 py-8">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>© 2025 Trello Clone. Built with Next.js and SQLAlchemy.</p>
+          <p>© 2025 Vertoh. Built with Next.js and SQLAlchemy.</p>
         </div>
       </footer>
     </div>

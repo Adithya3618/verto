@@ -38,7 +38,7 @@ export function Navbar() {
         <div className="flex items-center gap-6">
           <Link href="/dashboard" className="flex items-center gap-2">
             <Layers className="h-5 w-5 text-primary" />
-            <span className="font-bold">Trello Clone</span>
+            <span className="font-bold">Vertoh</span>
           </Link>
           <nav className="hidden md:flex items-center gap-4">
             <Link href="/dashboard">

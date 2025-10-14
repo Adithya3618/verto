@@ -56,7 +56,7 @@ export default function SignupPage() {
         {/* Logo */}
         <div className="mb-8 flex items-center justify-center gap-2">
           <Layers className="h-8 w-8 text-primary" />
-          <span className="text-2xl font-bold">Trello Clone</span>
+          <span className="text-2xl font-bold">Vertoh</span>
         </div>
 
         <Card>
